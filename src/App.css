@@ -46,8 +46,17 @@ body {
 }
 
 .main-page {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: grid;
+    justify-content: center;
+}
+
+
+.custom-file-btn {
+    background: #68d7cca3;
+    color: #fff;
+    width: 10vw;
+    height: 3vh;
+    border: 1px solid #338033;
+    border-radius: 6px;
+    overflow: hidden;
 }

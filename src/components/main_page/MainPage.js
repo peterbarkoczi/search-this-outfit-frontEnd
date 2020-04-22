@@ -5,7 +5,7 @@ function MainPage() {
     return (
         <div className="main-page" >
             <h4 className="title">
-                <i className="fab fa-react" /> Search This Outfit
+                <i className="fas fa-user-tie" /> Search This Outfit
             </h4>
             <InputField />
         </div>

@@ -1,20 +1,28 @@
-import React, { Fragment } from "react";
+import React, {Fragment, useContext} from "react";
+import axios from "axios";
+import {PictureContext} from "../context/PictureContext";
 
 function InputField() {
 
-    return (
-        <Fragment>
-            <form action="">
-                <div className="input-field">
-                    <input type="file" className="custom-file-input" id="customFile"/>
-                    <label className="custom-file-label" htmlFor="customFile">
-                        Choose file
-                    </label>
-                </div>
-                <input type="submit" value="upload" className="custom-file-btn" />
-            </form>
+    const {
+        currentPicture,
+        changeCurrentPicture
+    } = useContext(PictureContext)
 
-        </Fragment>
+    const fileSelectedHandler = event => {
+        changeCurrentPicture(event.target.files[0])
+
+    }
+
+    const fileUploadHandler = () => {
+
+    }
+
+    return (
+        <div className="image-upload-div">
+            <input type="file" className="custom-file-input" onChange={fileSelectedHandler}/>
+            <button onClick={fileUploadHandler} className="custom-file-btn">upload</button>
+        </div>
     );
 }
 
