@@ -2,23 +2,15 @@ import React, { createContext, useState} from "react";
 
 export const PictureContext = createContext();
 
-const PictureContextProvider = (props) => {
-    const [currentPicture, setCurrentPicture] = useState("hey");
-
-    const changeCurrentPicture = props => {
-        setCurrentPicture(props);
-        console.log(currentPicture);
-    }
+export const PictureProvider= props => {
+    const [currentPicture, setCurrentPicture] = useState(null);
 
     return (
         <PictureContext.Provider value={{
             currentPicture,
-            setCurrentPicture,
-            changeCurrentPicture
+            setCurrentPicture
         }}>
             {props.children}
         </PictureContext.Provider>
     );
 }
-
-export default PictureContextProvider;

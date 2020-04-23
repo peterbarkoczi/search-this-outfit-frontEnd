@@ -1,21 +1,25 @@
-import React, {Fragment, useContext} from "react";
-import axios from "axios";
+import React, {useContext} from "react";
 import {PictureContext} from "../context/PictureContext";
+import axios from "axios";
 
 function InputField() {
 
     const {
         currentPicture,
-        changeCurrentPicture
+        setCurrentPicture
     } = useContext(PictureContext)
 
     const fileSelectedHandler = event => {
-        changeCurrentPicture(event.target.files[0])
+        setCurrentPicture(event.target.files[0])
+        console.log(currentPicture)
 
     }
 
-    const fileUploadHandler = () => {
-
+    const fileUploadHandler = async () => {
+        const url = "http://localhost:5000/picture/upload";
+        await axios.post(url, {currentPicture})
+            .then(response => console.log(response))
+            .catch(reason => {console.log("mimanó" + reason)})
     }
 
     return (
