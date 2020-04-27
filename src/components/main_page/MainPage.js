@@ -10,11 +10,8 @@ function MainPage() {
 
     return (
         <div className="main-page" >
-            <h4 className="title">
-                <i className="fas fa-user-tie" /> Search This Outfit
-            </h4>
             <InputField />
-            {currentPicture !== null && <img src={currentPicture.filePath} alt=""/>}
+            {currentPicture !== null && <img className="current-image" src={currentPicture} alt=""/>}
 
         </div>
     )
