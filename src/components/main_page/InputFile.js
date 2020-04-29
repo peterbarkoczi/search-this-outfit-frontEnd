@@ -7,22 +7,34 @@ function InputField() {
     const {
         currentPicture,
         setCurrentPicture,
-        setPictureResults
+        pictureURL,
+        setPictureURL,
+        setPictureResults,
     } = useContext(PictureContext)
 
     const fileSelectedHandler = event => {
-        setCurrentPicture(event.target.files[0])
+        event.preventDefault();
+        let file = event.target.files[0];
+        let reader = new FileReader();
+
+        reader.onloadend = () => {
+            setPictureURL(reader.result);
+            setCurrentPicture(file)
+
+        }
+        reader.readAsDataURL(file)
 
     }
 
 
     useEffect(() => {
         if (currentPicture !== null ) {
-            console.log("hey");
+            console.log(pictureURL);
             const url = "http://localhost:5000/picture/upload";
-            axios.post(url, {currentPicture})
+
+            axios.post(url, {"currentPicture": pictureURL})
                 .then(response => console.log(response))
-                .catch(reason => {setPictureResults("mimanó" + reason)})
+                .catch(reason => {console.log("mimanó" + reason)})
         }
     }, [currentPicture])
 

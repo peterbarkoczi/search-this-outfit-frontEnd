@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 function NavBar() {
 
@@ -17,10 +17,10 @@ function NavBar() {
                 </h4>
             </a>
             <div className="nav-links">
-                <a href="#">link1</a>
-                <a href="#">link2</a>
-                <a href="#">link3</a>
-                <a href="#">link4</a>
+                <a href="/">link1</a>
+                <a href="/">link2</a>
+                <a href="/">link3</a>
+                <a href="/">link4</a>
             </div>
             <div className="burger" onClick={navSlide}>
                 <div className="line-1"></div>
