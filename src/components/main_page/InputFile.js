@@ -41,9 +41,10 @@ function InputField() {
 
 
     return (
-        <div className="image-upload-div">
-            <input type="file" className="custom-file-input" onChange={fileSelectedHandler}/>
-        </div>
+            <div className="image-upload-div">
+                <input type="file" className="custom-file-input" onChange={fileSelectedHandler}/>
+            </div>
+
     );
 }
 

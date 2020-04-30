@@ -1,6 +1,8 @@
 import React, {useContext} from "react";
 import InputField from "./InputFile";
 import { PictureContext} from "../context/PictureContext";
+import SideBar from "./SideBar";
+import PictureResults from "./PictureResults";
 
 function MainPage() {
 
@@ -10,9 +12,13 @@ function MainPage() {
 
     return (
         <div className="main-page" >
-            <InputField />
-            {pictureURL !== null && <img className="current-image" src={pictureURL} alt=""/>}
+            <div className="image-upload-container">
+                <InputField />
+                {pictureURL !== null && <img className="current-image" src={pictureURL} alt=""/>}
+            </div>
 
+            <SideBar />
+            <PictureResults />
         </div>
     )
 }

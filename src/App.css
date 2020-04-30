@@ -117,7 +117,7 @@ body {
         right: 0;
         height: 92vh;
         top: 8vh;
-        background-color: rgba(220, 217, 217, 0.4);
+        background-color: rgba(220, 217, 217, 0.5);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -125,6 +125,7 @@ body {
         padding-bottom: 50vh;
         transform: translateX(100%);
         width: 50%;
+        z-index: 2;
     }
 
     .burger {
@@ -148,15 +149,81 @@ body {
 .main-page {
     display: grid;
     justify-content: center;
+    height: 92vh;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: minmax(50px, auto) 1fr;
+    grid-template-areas:
+                        "input input input"
+                        "sidebar pictures none";
+}
+
+.image-upload-container {
+    grid-area: input;
+    display: flex;
+    flex-direction: column;
 }
 
 .image-upload-div {
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
+/*
+.dropzone {
+    text-align: center;
+    padding: 20px;
+    border: 3px dashed #eeeeee;
+    background-color: #fafafa;
+    color: #bdbdbd;
+}
+ */
+
 .current-image {
+    position: relative;
+    left: 40vw;
     width: 200px;
     height: 200px;
 }
+
+.sidebar {
+    grid-area: sidebar;
+
+}
+
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar li {
+    border-radius: 0.5rem;
+}
+
+.pictureResults {
+    grid-area: pictures;
+
+}
+
+.pictureResults ul {
+    display: flex;
+}
+
+.pictureResults li {
+    display: flex;
+    width: 50px;
+    height: 150px;
+    color: black;
+    border-radius: 0.5rem;
+    background-color: #d2c9c9;
+    justify-content: space-between;
+    margin: 1rem;
+    align-items: center;
+
+}
+
+.pictureResults li:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+}
+
+
