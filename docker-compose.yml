@@ -1,0 +1,4 @@
+frontend:
+  image: frontend:latest
+  ports:
+    - 3032:80
