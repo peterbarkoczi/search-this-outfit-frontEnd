@@ -1,15 +1,24 @@
 import React, {useContext, useEffect} from "react";
-import {PictureContext} from "../context/PictureContext";
+import {PictureContext} from "context/PictureContext";
 import axios from "axios";
+import styled from "styled-components";
+
+const InputFieldStyle = styled.div`
+   .image-upload-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+   }
+    
+`;
+
 
 function InputField() {
-
     const {
         currentPicture,
         setCurrentPicture,
         pictureURL,
         setPictureURL,
-        setPictureResults,
     } = useContext(PictureContext)
 
     const fileSelectedHandler = event => {
@@ -26,25 +35,25 @@ function InputField() {
 
     }
 
-
     useEffect(() => {
-        if (currentPicture !== null ) {
+        if (currentPicture !== null) {
             console.log(pictureURL);
             const url = "http://localhost:5000/picture/upload";
 
             axios.post(url, {"currentPicture": pictureURL})
                 .then(response => console.log(response))
-                .catch(reason => {console.log("mimanó" + reason)})
+                .catch(reason => {
+                    console.log("mimanó" + reason)
+                })
         }
     }, [currentPicture])
 
-
-
     return (
+        <InputFieldStyle>
             <div className="image-upload-div">
                 <input type="file" className="custom-file-input" onChange={fileSelectedHandler}/>
             </div>
-
+        </InputFieldStyle>
     );
 }
 
