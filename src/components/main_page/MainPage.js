@@ -9,10 +9,8 @@ import styled from "styled-components";
 const MainPageStyle = styled.div`
   .main-page {
      display: grid;
-     justify-content: center;
-     height: 92vh;
      grid-template-columns: 1fr 5fr 1fr;
-     grid-template-rows: minmax(50px, auto) 1fr;
+     grid-template-rows: minmax(250px, auto) 1fr;
      grid-template-areas:
                         "input input input"
                         "sidebar pictures none";

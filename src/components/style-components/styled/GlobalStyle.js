@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
         background: linear-gradient(-45deg, #9c3c32, #9a3253, #207899, #2583af);
         background-size: 400% 400%;
         position: relative;
-        background-position: 75% 30%;
+        background-position: 80% 10%;
         /*animation: change 30s ease-in-out infinite;*/
     }
     

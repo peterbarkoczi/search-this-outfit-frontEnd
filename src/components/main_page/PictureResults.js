@@ -6,7 +6,7 @@ const PictureResultsStyle = styled.div`
     .pictureResults {
     grid-area: pictures;
 
-}
+    }
 
 .pictureResults ul {
     display: flex;

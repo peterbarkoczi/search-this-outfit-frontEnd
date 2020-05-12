@@ -15,10 +15,9 @@ const InputFieldStyle = styled.div`
 
 function InputField() {
     const {
-        currentPicture,
-        setCurrentPicture,
         pictureURL,
         setPictureURL,
+        setPictureResults
     } = useContext(PictureContext)
 
     const fileSelectedHandler = event => {
@@ -28,7 +27,6 @@ function InputField() {
 
         reader.onloadend = () => {
             setPictureURL(reader.result);
-            setCurrentPicture(file)
 
         }
         reader.readAsDataURL(file)
@@ -36,17 +34,16 @@ function InputField() {
     }
 
     useEffect(() => {
-        if (currentPicture !== null) {
-            console.log(pictureURL);
-            const url = "http://localhost:5000/picture/upload";
-
-            axios.post(url, {"currentPicture": pictureURL})
-                .then(response => console.log(response))
+        if (pictureURL !== null) {
+            const url = "http://localhost:8080/picture/upload";
+            console.log(pictureURL)
+            axios.post(url, {base64: pictureURL.split(',')[1]})
+                .then(response => setPictureResults(response.data))
                 .catch(reason => {
-                    console.log("mimanó" + reason)
+                    console.log("mimanó " + reason)
                 })
         }
-    }, [currentPicture])
+    }, [pictureURL])
 
     return (
         <InputFieldStyle>

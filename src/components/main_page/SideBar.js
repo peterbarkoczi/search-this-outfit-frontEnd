@@ -29,15 +29,16 @@ const SideBarStyle = styled.div`
 function SideBar() {
 
 
-    const {} = useContext(PictureContext)
+    const {pictureResults} = useContext(PictureContext)
+    let id = 0;
 
     return (
         <SideBarStyle>
             <div className="sidebar">
                 <ul>
-                    <button>button_1</button>
-                    <button>button_2</button>
-                    <button>button_3</button>
+                    {pictureResults.map( (labels) => {
+                       return <button key={id++}>{labels.names[0]}</button>
+                    })}
                 </ul>
             </div>
         </SideBarStyle>
