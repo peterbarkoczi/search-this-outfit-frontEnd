@@ -1,15 +1,30 @@
 import React, {useContext, useEffect} from "react";
-import {PictureContext} from "../context/PictureContext";
+import {PictureContext} from "context/PictureContext";
 import axios from "axios";
+import styled from "styled-components";
+
+const InputFieldStyle = styled.div`
+   .image-upload-div {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+   }
+   
+   @media screen and (max-width: 1024px) {
+       
+   .image-upload-div {
+      justify-content: center;
+   }
+}
+    
+`;
+
 
 function InputField() {
-
     const {
-        currentPicture,
-        setCurrentPicture,
         pictureURL,
         setPictureURL,
-        setPictureResults,
+        setPictureResults
     } = useContext(PictureContext)
 
     const fileSelectedHandler = event => {
@@ -19,31 +34,30 @@ function InputField() {
 
         reader.onloadend = () => {
             setPictureURL(reader.result);
-            setCurrentPicture(file)
 
         }
         reader.readAsDataURL(file)
 
     }
 
-
     useEffect(() => {
-        if (currentPicture !== null ) {
-            console.log(pictureURL);
-            const url = "http://localhost:5000/picture/upload";
-
-            axios.post(url, {"currentPicture": pictureURL})
-                .then(response => console.log(response))
-                .catch(reason => {console.log("mimanó" + reason)})
+        if (pictureURL !== null) {
+            const url = "http://localhost:8080/picture/upload";
+            console.log(pictureURL)
+            axios.post(url, {base64: pictureURL.split(',')[1]})
+                .then(response => setPictureResults(response.data))
+                .catch(reason => {
+                    console.log("mimanó " + reason)
+                })
         }
-    }, [currentPicture])
-
-
+    }, [pictureURL])
 
     return (
-        <div className="image-upload-div">
-            <input type="file" className="custom-file-input" onChange={fileSelectedHandler}/>
-        </div>
+        <InputFieldStyle>
+            <div className="image-upload-div">
+                <input type="file" className="custom-file-input" onChange={fileSelectedHandler}/>
+            </div>
+        </InputFieldStyle>
     );
 }
 
