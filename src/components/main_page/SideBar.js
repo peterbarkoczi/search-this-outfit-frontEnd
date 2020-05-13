@@ -39,11 +39,15 @@ function SideBar() {
         <SideBarStyle>
             <div className="sidebar">
                 <ul>
-                    {pictureResults.map( (labels) => {
-                       return <button key={id++}>{labels.names[0]}</button>
-                    })}
+            {/*        {pictureResults.map( (labels) => {*/}
+            {/*           return <button key={id++}>{labels.names[0]}</button>*/}
+            {/*        })}*/}
+                    <button>label_1</button>
+                    <button>label_1</button>
+                    <button>label_1</button>
                 </ul>
             </div>
+
         </SideBarStyle>
     )
 

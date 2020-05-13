@@ -9,10 +9,10 @@ import styled from "styled-components";
 const MainPageStyle = styled.div`
   .main-page {
      display: grid;
-     grid-template-columns: 1fr 5fr 3fr;
+     grid-template-columns: 2fr 2fr 2fr;
      grid-template-rows: minmax(250px, auto) 1fr;
      grid-template-areas:
-                        "input input sidebar"
+                        "none input sidebar"
                         "pictures pictures pictures";
   }
   
@@ -27,19 +27,6 @@ const MainPageStyle = styled.div`
                         "pictures";
     }
   }
-
-  .image-upload-container {
-     grid-area: input;
-     display: flex;
-     flex-direction: column;
-  }
-
-  .current-image {
-     position: relative;
-     left: 40vw;
-     width: 300px;
-     height: 300px;
-  }
 `;
 
 
@@ -52,11 +39,7 @@ function MainPage() {
     return (
         <MainPageStyle>
             <div className="main-page">
-                <div className="image-upload-container">
-                    <InputField/>
-                    {pictureURL !== null && <img className="current-image" src={pictureURL} alt=""/>}
-                </div>
-
+                <InputField/> {/*{pictureURL !== null && <img className="current-image" src={pictureURL} alt=""/>}*/}
                 <SideBar/>
                 <PictureResults/>
             </div>
