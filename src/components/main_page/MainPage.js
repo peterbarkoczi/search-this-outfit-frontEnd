@@ -9,11 +9,23 @@ import styled from "styled-components";
 const MainPageStyle = styled.div`
   .main-page {
      display: grid;
-     grid-template-columns: 1fr 5fr 1fr;
+     grid-template-columns: 1fr 5fr 3fr;
      grid-template-rows: minmax(250px, auto) 1fr;
      grid-template-areas:
-                        "input input input"
-                        "sidebar pictures none";
+                        "input input sidebar"
+                        "pictures pictures pictures";
+  }
+  
+  @media screen and (max-width: 1024px) {
+      .main-page {
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-template-rows: minmax(250px, auto) auto 1fr;
+     grid-template-areas:
+                        "input"
+                        "sidebar"
+                        "pictures";
+    }
   }
 
   .image-upload-container {
@@ -25,8 +37,8 @@ const MainPageStyle = styled.div`
   .current-image {
      position: relative;
      left: 40vw;
-     width: 200px;
-     height: 200px;
+     width: 300px;
+     height: 300px;
   }
 `;
 

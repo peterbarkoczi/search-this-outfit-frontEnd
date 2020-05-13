@@ -6,9 +6,16 @@ import styled from "styled-components";
 const InputFieldStyle = styled.div`
    .image-upload-div {
         display: flex;
-        justify-content: center;
+        justify-content: right;
         align-items: center;
    }
+   
+   @media screen and (max-width: 1024px) {
+       
+   .image-upload-div {
+      justify-content: center;
+   }
+}
     
 `;
 
