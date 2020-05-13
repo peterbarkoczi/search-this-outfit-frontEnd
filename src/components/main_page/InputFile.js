@@ -70,6 +70,8 @@ position: relative;
 
 function InputField() {
     const {
+        faszok,
+        setFaszok,
         pictureURL,
         setPictureURL,
         setPictureResults
@@ -78,8 +80,8 @@ function InputField() {
     const onDrop = useCallback(acceptedFiles => {
         acceptedFiles.forEach((file) => {
             let reader = new FileReader();
-
             reader.onloadend = () => {
+                setFaszok(faszok => [reader.result, faszok[0], faszok[1]]);
                 setPictureURL(reader.result);
 
             }
@@ -111,7 +113,8 @@ function InputField() {
 
     useEffect(() => {
         if (pictureURL !== null) {
-            console.log(pictureURL)
+          console.log(faszok)
+
             const url = "http://localhost:8080/picture/upload";
             axios.post(url, {base64: pictureURL.split(',')[1]})
                 .then(response => setPictureResults(response.data))
@@ -134,10 +137,3 @@ function InputField() {
 }
 
 export default InputField;
-
-{/*<div className="image-upload-div">*/
-}
-{/*    <input type="file" className="custom-file-input" onChange={fileSelectedHandler}/>*/
-}
-{/*</div>*/
-}

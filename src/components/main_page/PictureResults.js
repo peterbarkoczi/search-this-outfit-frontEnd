@@ -24,6 +24,11 @@ const PictureResultsStyle = styled.div`
     
     }
 
+    img {
+        width: 50px;
+        height: 150px;
+    }
+
     .pictureResults li:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
     }
@@ -31,16 +36,16 @@ const PictureResultsStyle = styled.div`
 
 function PictureResults() {
 
-    const {} = useContext(PictureContext)
+    const {faszok} = useContext(PictureContext)
 
 
     return (
         <PictureResultsStyle>
             <div className="pictureResults">
                 <ul>
-                    <li>picture_1</li>
-                    <li>picture_2</li>
-                    <li>picture_3</li>
+                    {!faszok[0] ? <li>picture_1</li> : <img  src={faszok[0]} alt=""/>}
+                    {!faszok[1] ? <li>picture_2</li> : <img  src={faszok[1]} alt=""/>}
+                    {!faszok[2] ? <li>picture_3</li> : <img  src={faszok[2]} alt=""/>}
                 </ul>
             </div>
         </PictureResultsStyle>
