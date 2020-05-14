@@ -1,14 +1,14 @@
 import React, {useContext} from "react";
-import {PictureContext} from "context/PictureContext";
 import styled from "styled-components";
+import {PictureContext} from "../../context/PictureContext";
 
 const PictureResultsStyle = styled.div`
      grid-area: pictures;
 
 
     .pictureResults ul {
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .pictureResults li {
@@ -31,16 +31,17 @@ const PictureResultsStyle = styled.div`
 
 function PictureResults() {
 
-    const {} = useContext(PictureContext)
-
+    const {pictureResults} = useContext(PictureContext)
 
     return (
         <PictureResultsStyle>
             <div className="pictureResults">
                 <ul>
-                    <li>picture_1</li>
-                    <li>picture_2</li>
-                    <li>picture_3</li>
+                    {pictureResults.map(cloth => {
+                        console.log(cloth.id)
+                        return <li>{cloth.id}</li>
+
+                    } )}
                 </ul>
             </div>
         </PictureResultsStyle>

@@ -74,15 +74,19 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   }
+  
+  .dim {
+      opacity: 1;
+    }
 `;
 
 
 function InputField() {
     const {
-        pictureResults,
+        labels,
+        setLabels,
         pictureURL,
         setPictureURL,
-        setPictureResults
     } = useContext(PictureContext)
 
     const onDrop = useCallback(acceptedFiles => {
@@ -123,7 +127,7 @@ function InputField() {
         if (pictureURL !== null) {
             const url = "http://localhost:8080/picture/upload";
             axios.post(url, {base64: pictureURL.split(',')[1]})
-                .then(response => setPictureResults(response.data))
+                .then(response => setLabels(response.data))
                 .catch(reason => {
                     console.log("mimanó " + reason)
                 })
@@ -138,9 +142,10 @@ function InputField() {
                 <input {...getInputProps()} onChange={fileSelectedHandler} />
                 {!isDragActive && <p>Drag 'n' drop some files here,<br/> or click to select files</p>}
                 {isDragAccept && <p style={{color: "#078dcd"}}>Drop here!</p>}
+                {isDragReject && <p style={{color: "#ff1744"}} >You can't upload this type!</p>}
                 {pictureURL !== null && <img className="current-image" src={pictureURL} alt=""/>}
-                {pictureURL !==null && pictureResults.map( (labels) => {
-                    return <BoundingBoxes key={id++} {...labels}/>
+                {pictureURL !==null && labels.map( (labels) => {
+                    return <BoundingBoxes key={id++} {...labels} id={id}/>
                 })}
             </Container>
         </DropZone>
@@ -148,10 +153,3 @@ function InputField() {
 }
 
 export default InputField;
-
-{/*<div className="image-upload-div">*/
-}
-{/*    <input type="file" className="custom-file-input" onChange={fileSelectedHandler}/>*/
-}
-{/*</div>*/
-}
