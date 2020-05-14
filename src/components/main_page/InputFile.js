@@ -3,6 +3,8 @@ import {PictureContext} from "context/PictureContext";
 import axios from "axios";
 import styled from "styled-components";
 import {useDropzone} from 'react-dropzone';
+import BoundingBoxes from "./BoundingBox";
+
 
 const getColor = (props) => {
     if (props.isDragAccept) {
@@ -30,9 +32,9 @@ const DropZone = styled.div`
 
 
 const Container = styled.div`
-position: relative;
+  position: relative;
   margin: 5rem;
-  height: 250px;
+  height: 400px;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -44,9 +46,15 @@ position: relative;
   border-color: ${props => getColor(props)};
   border-style: dashed;
   background-color: rgba(213,210,210,0.84);
-  color: #000000;
+  color: #5a5757;
   outline: none;
-  transition: border .24s ease-in-out;
+  transition: border .24s ease-in-out, background-color .24s ease, border-color .24s ease;
+  
+  &:hover {
+  cursor: pointer;
+    background-color: rgba(190,222,236,0.65);
+    border-color: #0a75c4;
+  }
   
   @media screen and (max-width: 1024px) { 
      width: 300px;
@@ -58,6 +66,7 @@ position: relative;
   
   p {
   font-size: 1.5rem;
+  font-weight: bold;
   }
   
   img {
@@ -70,6 +79,7 @@ position: relative;
 
 function InputField() {
     const {
+        pictureResults,
         pictureURL,
         setPictureURL,
         setPictureResults
@@ -111,7 +121,6 @@ function InputField() {
 
     useEffect(() => {
         if (pictureURL !== null) {
-            console.log(pictureURL)
             const url = "http://localhost:8080/picture/upload";
             axios.post(url, {base64: pictureURL.split(',')[1]})
                 .then(response => setPictureResults(response.data))
@@ -121,6 +130,8 @@ function InputField() {
         }
     }, [pictureURL])
 
+    let id = 0;
+
     return (
         <DropZone>
             <Container {...getRootProps({isDragActive, isDragAccept, isDragReject})}>
@@ -128,6 +139,9 @@ function InputField() {
                 {!isDragActive && <p>Drag 'n' drop some files here,<br/> or click to select files</p>}
                 {isDragAccept && <p style={{color: "#078dcd"}}>Drop here!</p>}
                 {pictureURL !== null && <img className="current-image" src={pictureURL} alt=""/>}
+                {pictureURL !==null && pictureResults.map( (labels) => {
+                    return <BoundingBoxes key={id++} {...labels}/>
+                })}
             </Container>
         </DropZone>
     );

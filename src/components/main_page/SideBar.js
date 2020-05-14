@@ -17,14 +17,19 @@ const SideBarStyle = styled.div`
     }
 
     .sidebar button {
-        border-radius: 0.5rem;
         background-color: #d2c9c9;
-        width: 100px;
+        border-color: #a39d9d;
+        height: 40px;
+        width: 150px;
         margin: 5px;
+        transition: background-color .24s ease, border-color .25s ease;
     }
 
     .sidebar button:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+        background-color: #67adc9;
+        border-color: #338caf;
+        cursor: pointer;
     
     }
 `;
@@ -39,12 +44,12 @@ function SideBar() {
         <SideBarStyle>
             <div className="sidebar">
                 <ul>
-            {/*        {pictureResults.map( (labels) => {*/}
-            {/*           return <button key={id++}>{labels.names[0]}</button>*/}
-            {/*        })}*/}
-                    <button>label_1</button>
-                    <button>label_1</button>
-                    <button>label_1</button>
+                    {pictureResults.map( (labels) => {
+                       return <button key={id++}>{labels.names[0]}</button>
+                    })}
+            {/*        <button>label_1</button>*/}
+            {/*        <button>label_1</button>*/}
+            {/*        <button>label_1</button>*/}
                 </ul>
             </div>
 

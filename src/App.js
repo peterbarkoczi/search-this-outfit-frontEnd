@@ -16,6 +16,7 @@ function App() {
             <PictureProvider>
                 <GlobalStyle />
                     <NavBar/>
+                    <div className="backGround" />
                     <Router>
                         <div className="container">
                             <Route exact path="/" component={MainPage}/>
