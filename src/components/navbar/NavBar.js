@@ -126,7 +126,7 @@ function NavBar() {
 
     return (
         <NavBarStyle>
-            <div className="nav">
+            <div className="nav" data-testid="navbar">
                 <a className="title-a" href="/">
                     <h4 className="title">
 
