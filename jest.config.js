@@ -10,5 +10,8 @@ module.exports = {
         "test"
     ],
     "testResultsProcessor": "jest-teamcity-reporter",
-    "testEnvironment": "jest-environment-jsdom-sixteen"
+    "testEnvironment": "jest-environment-jsdom-sixteen",
+    "moduleNameMapper": {
+        ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    }
 }
