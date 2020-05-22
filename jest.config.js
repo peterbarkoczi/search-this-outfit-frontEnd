@@ -9,5 +9,6 @@ module.exports = {
         "src",
         "test"
     ],
-    "testResultsProcessor": "jest-teamcity-reporter"
+    "testResultsProcessor": "jest-teamcity-reporter",
+    "testEnvironment": "jest-environment-jsdom-sixteen"
 }
