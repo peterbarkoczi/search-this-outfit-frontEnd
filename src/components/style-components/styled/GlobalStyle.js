@@ -1,4 +1,5 @@
 import {createGlobalStyle} from "styled-components";
+import myImage from 'street.jpg';
 
 const GlobalStyle = createGlobalStyle`
     *, *::before, *::after {
@@ -15,13 +16,19 @@ const GlobalStyle = createGlobalStyle`
     body {
         height: 100vh;
         width: 100%;
-        color: #fff;
-        background: linear-gradient(-45deg, #9c3c32, #9a3253, #207899, #2583af);
-        background-size: 400% 400%;
-        position: relative;
-        background-position: 80% 10%;
+        
+        
         /*animation: change 30s ease-in-out infinite;*/
     }
+    
+    .backGround {
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background-image: url(${myImage});
+        opacity: 0.9;
+    }
+    
     
     @keyframes change {
     0% {
