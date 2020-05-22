@@ -8,5 +8,6 @@ module.exports = {
     "modulePaths": [
         "src",
         "test"
-    ]
+    ],
+    "testResultsProcessor": "jest-teamcity-reporter"
 }
