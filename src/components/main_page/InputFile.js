@@ -125,7 +125,7 @@ function InputField() {
 
     useEffect(() => {
         if (pictureURL !== null) {
-            const url = "http://localhost:3334/picture/upload";
+            const url = "http://ip-172-17-0-2.eu-west-1.compute.internal:3334/picture/upload";
             axios.post(url, {base64: pictureURL.split(',')[1]})
                 .then(response => setLabels(response.data))
                 .catch(reason => {
