@@ -73,7 +73,7 @@ function SideBar() {
 
     return (
         <SideBarStyle>
-            <div className="sidebar">
+            <div className="sidebar" data-testid="sidebar">
                 <ul>
                     {labels.map( (labels) => {
                        return <button key={id++}
